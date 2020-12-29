@@ -36,4 +36,3 @@ def square_root_of_sum():
     '''
     sqrt_of_sum = None
     return sqrt_of_sum
-    
