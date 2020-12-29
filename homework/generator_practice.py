@@ -1,5 +1,5 @@
 #######################
-# Generator           # 
+# Generator           #
 #######################
 
 """
@@ -11,46 +11,48 @@
 "yield" in Python Doc: https://www.python.org/dev/peps/pep-0255/ 
 """
 
+
 def get_prefixes(a_sequence):
-    '''
+    """
     주어진 sequence의 접두사를 반환함
 
-        Parameters: 
+        Parameters:
             a_sequence: string 또는 한가지 타입으로 구성된 리스트
 
         Yields:
-            접두사 하나씩을 yield함 
+            접두사 하나씩을 yield함
 
         Examples:
-            >>> import generator_practice as gp 
+            >>> import generator_practice as gp
             >>> a_seq1 = [1, 2, 3]
             >>> list(gp.get_prefixes(a_seq1))
             [[], [1], [1, 2], [1, 2, 3]]
             >>> a_seq2 = "abc"
             >>> list(gp.get_prefixes(a_seq2))
             ['', 'a', 'ab', 'abc']
-    '''
+    """
     prefix_sequence = None
     return prefix_sequence
 
+
 def get_suffixes(a_sequence):
-    '''
+    """
     주어진 sequence의 접미사를 반환함
 
-        Parameters: 
+        Parameters:
             a_sequence: string 또는 한가지 타입으로 구성된 리스트
 
         Yields:
-            접미사 하나씩을 yield함 
+            접미사 하나씩을 yield함
 
         Examples:
-            >>> import generator_practice as gp 
+            >>> import generator_practice as gp
             >>> a_seq1 = [1, 2, 3]
             >>> list(gp.get_suffixes(a_seq1))
             [[1, 2, 3], [2, 3], [3], []]
             >>> a_seq2 = "abc"
             >>> list(gp.get_suffixes(a_seq2))
             ['abc', 'bc', 'c', '']
-    '''
+    """
     suffix_sequence = None
     return suffix_sequence
