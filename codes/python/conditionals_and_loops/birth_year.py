@@ -1,6 +1,6 @@
 birth_year = int(input("당신의 태어난 년도를 입력해 주세요 : "))
 
-age = 2020 - birth_year + 1
+age = 2021 - birth_year + 1
 
 message = ""
 
