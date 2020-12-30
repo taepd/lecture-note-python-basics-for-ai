@@ -6,7 +6,7 @@ message = ""
 
 if 20 <= age and age <= 26:
     message = "대학생"
-elif 17 <= age and age  < 20:
+elif 17 <= age and age < 20:
     message = "고등학생"
 elif 14 <= age and age < 17:
     message = "중학생"
