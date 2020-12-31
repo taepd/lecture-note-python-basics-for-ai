@@ -14,5 +14,5 @@ for subject_score in midterm_score:
 
 i = 0
 for value in student_score:
-    print( "{0}번째 사람의 평균점수는 {1:.2f}점입니다.".format(i, value / 3)) 
+    print("{0}번째 사람의 평균점수는 {1:.2f}점입니다.".format(i, value / 3))
     i += 1
