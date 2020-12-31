@@ -21,10 +21,11 @@ def digits_to_words(input_string):
 
         Examples:
             >>> import text_processing2 as tp2
-            >>> input_string1 = "This is an example."
-            >>> tp2.digits_to_words("Zip Code: 19104")
+            >>> digits_str1 = "Zip Code: 19104"
+            >>> tp2.digits_to_words(digits_str1)
             'one nine one zero four'
-            >>> tp2.digits_to_words("Pi is 3.1415...")
+            >>> digits_str2 = "Pi is 3.1415..."
+            >>> tp2.digits_to_words(digits_str2)
             'three one four one five'
     """
     digit_string = None
@@ -52,11 +53,12 @@ def to_camel_case(underscore_str):
             camelcase_str (string): camelcase를 따른 스트링
 
         Examples:
+            >>> import text_processing2 as tp2
             >>> underscore_str1 = "to_camel_case"
-            >>> to_camel_case(underscore_str1)
+            >>> tp2.to_camel_case(underscore_str1)
             'toCamelCase'
             >>> underscore_str2 = "__EXAMPLE__NAME__"
-            >>> to_camel_case(underscore_str2)
+            >>> tp2.to_camel_case(underscore_str2)
             'exampleName'
     """
     camelcase_str = None
