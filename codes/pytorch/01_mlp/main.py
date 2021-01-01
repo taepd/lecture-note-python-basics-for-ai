@@ -122,6 +122,7 @@ def train_model(
 
 
 def test_model(model, test_iter, device: str):
+    model.eval()
     mnist_test = test_iter.dataset
 
     n_sample = 64
