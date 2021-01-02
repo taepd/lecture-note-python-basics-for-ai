@@ -37,9 +37,9 @@ def get_config():
 
 # MNIST dataset
 def get_mnist(BATCH_SIZE: int):
-    transform = transforms.Compose([
-                transforms.ToTensor(),
-                transforms.Normalize(mean=[0.5], std=[0.5])])
+    transform = transforms.Compose(
+        [transforms.ToTensor(), transforms.Normalize(mean=[0.5], std=[0.5])]
+    )
 
     mnist_train = datasets.MNIST(
         root="./data/", train=True, transform=transform, download=True
@@ -86,7 +86,9 @@ def print_modelinfo(G: nn.Module, D: nn.Module):
 
 
 # Define help function
-def plot_generator(gen_model: nn.Module, num:int = 10, latent_size:int=100, device:str='cpu'):
+def plot_generator(
+    gen_model: nn.Module, num: int = 10, latent_size: int = 100, device: str = "cpu"
+):
     z = torch.randn(num, latent_size).to(device)
 
     gen_model.eval()
@@ -95,15 +97,22 @@ def plot_generator(gen_model: nn.Module, num:int = 10, latent_size:int=100, devi
 
     plt.figure(figsize=(8, 2))
     for i in range(num):
-        plt.subplot(1, num, i+1)
+        plt.subplot(1, num, i + 1)
         plt.imshow(test_g[i].view(28, 28).data.cpu().numpy(), cmap=plt.cm.gray)
-        plt.axis('off')
+        plt.axis("off")
     plt.show()
 
 
 # Train MLP Model
 def train_model(
-    G: nn.Module, D: nn.Module, train_iter, test_iter, EPOCHS: int, BATCH_SIZE: int, LATENT_SIZE: int, device: str
+    G: nn.Module,
+    D: nn.Module,
+    train_iter,
+    test_iter,
+    EPOCHS: int,
+    BATCH_SIZE: int,
+    LATENT_SIZE: int,
+    device: str,
 ):
     # Training Phase
     print_every = 1
@@ -120,27 +129,26 @@ def train_model(
             X = batch_img.view(batch_img.size(0), -1).to(device)
 
             real_lab = torch.ones(batch_img.size(0), 1).to(device)
-            
+
             fake_lab = torch.zeros(batch_img.size(0), 1).to(device)
-            
+
             # Training Discriminator
             D_pred = D.forward(X)
             d_loss_real = criterion(D_pred, real_lab)
-            
+
             z = torch.randn(batch_img.size(0), LATENT_SIZE).to(device)
-            
+
             fake_images = G.forward(z)
             G_pred = D.forward(fake_images)
             d_loss_fake = criterion(G_pred, fake_lab)
-            
-            d_loss = (d_loss_real + d_loss_fake)/2.
+
+            d_loss = (d_loss_real + d_loss_fake) / 2.0
             d_loss_val_sum += d_loss
 
             d_optimizer.zero_grad()
             d_loss.backward()
             d_optimizer.step()
-            
-            
+
             # Training Generator
             z = torch.randn(batch_img.size(0), LATENT_SIZE).to(device)
             fake_images = G.forward(z)
@@ -151,12 +159,14 @@ def train_model(
             g_optimizer.zero_grad()
             g_loss.backward()
             g_optimizer.step()
-            
+
             total += X.size(0)
-            
-        if (((epoch+1)%print_every)==0) or ((epoch+1)==(EPOCHS-1)):
-                print(f"Epoch: {epoch+1}, G_loss: {g_loss_val_sum/total}, D_loss: {d_loss_val_sum/total}")
-        if (((epoch+1)%plot_every)==0) or ((epoch+1)==(EPOCHS-1)):
+
+        if (((epoch + 1) % print_every) == 0) or ((epoch + 1) == (EPOCHS - 1)):
+            print(
+                f"Epoch: {epoch+1}, G_loss: {g_loss_val_sum/total}, D_loss: {d_loss_val_sum/total}"
+            )
+        if (((epoch + 1) % plot_every) == 0) or ((epoch + 1) == (EPOCHS - 1)):
             plot_generator(G, num=10, latent_size=LATENT_SIZE, device=device)
     print("Training Done !")
 
@@ -170,9 +180,18 @@ if __name__ == "__main__":
     train_iter, test_iter = get_mnist(config.BATCH_SIZE)
     print("Preparing dataset done!")
 
-    G, D, criterion, d_optimizer, g_optimizer = get_network(config.LEARNING_RATE, config.device)
+    G, D, criterion, d_optimizer, g_optimizer = get_network(
+        config.LEARNING_RATE, config.device
+    )
     print_modelinfo(G, D)
 
     train_model(
-        G, D, train_iter, test_iter, config.EPOCHS, config.BATCH_SIZE, config.LATENT_SIZE, config.device
+        G,
+        D,
+        train_iter,
+        test_iter,
+        config.EPOCHS,
+        config.BATCH_SIZE,
+        config.LATENT_SIZE,
+        config.device,
     )
