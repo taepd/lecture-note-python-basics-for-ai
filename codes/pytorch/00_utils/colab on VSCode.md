@@ -27,7 +27,7 @@
 2. google colab 에서 아래 코드를 실행합니다. NGROK_TOKEN 변수에는 본인의 ngrok authtoken 을, PASSWORD 변수에는 접속할 때 사용할 비밀번호를 설정합니다.  
 (코드를 실행하기 전에 수정 > 노트 설정에 들어가 하드웨어 가속기를 GPU 로 지정합니다.   
   → 이 부분은 설정하지 않아도 되지만, 제대로 연결되었는지 확인하기 위해 GPU 로 설정하는 것을 권장드립니다.)
-<img src='img/Untitled%201.png' width='300px'>
+    <img src='img/Untitled%201.png' width='300px'>
 
     ```python
     NGROK_TOKEN = '토큰' # ngrok 토큰
@@ -41,14 +41,14 @@
 
     ⇒ 실행 결과 : (HostName, User, Port 는 사용자마다 다를 수 있습니다.)
 
-    ![img/Untitled%202.png](img/Untitled%202.png)
-
+    <img src='img/Untitled%202.png' height='300px'>
 3. VSCode 에서 Extentions → Remote - SSH 를 설치합니다.
 
     ![img/Untitled%203.png](img/Untitled%203.png)
 
-4. VSCode 에서 (Windows 는 ctrl + shift + p / Mac 은 command + shift + p 를 입력하여)
-Remote - SSH → Add New SSH Host 에서 ssh User@HostName -p PORT 형식으로 ssh 호스트를 추가합니다. (ex. ssh root@[0.tcp.ngrok.io](http://0.tcp.ngrok.io) -p 15762)
+4. VSCode 에서 (Windows 는 ctrl + shift + p / Mac 은 command + shift + p 를 입력하여)  
+  Remote - SSH → Add New SSH Host 에서 ssh User@HostName -p PORT 형식으로 ssh 호스트를 추가합니다.   
+  (ex. ssh root@[0.tcp.ngrok.io](http://0.tcp.ngrok.io) -p 15762)
 
     ![img/Untitled%204.png](img/Untitled%204.png)
 
